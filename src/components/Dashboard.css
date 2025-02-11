@@ -1,0 +1,253 @@
+:root {
+  --color-primary: #333;
+  --color-secondary: #666;
+  --color-border: #ddd;
+  --color-background: #fff;
+  --color-debit: #dc3545;
+  --color-credit: #28a745;
+  --color-hover: #f5f5f5;
+  --color-stripe: #f9f9f9;
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --border-radius: 4px;
+  --spacing-xs: 5px;
+  --spacing-sm: 8px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
+  --spacing-xl: 30px;
+  --font-size-sm: 12px;
+  --font-size-md: 13px;
+  --font-size-lg: 14px;
+}
+
+/* Layout */
+.dashboard {
+  padding: var(--spacing-lg);
+  background: var(--color-background);
+}
+
+/* Header Styles */
+.statement-header {
+  margin-bottom: var(--spacing-xl);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--spacing-md);
+}
+
+.statement-header h2 {
+  color: var(--color-primary);
+  margin-bottom: 15px;
+}
+
+.statement-info {
+  display: flex;
+  gap: 30px;
+  color: var(--color-secondary);
+}
+
+/* Table Styles */
+.statement-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-md);
+  background: var(--color-background);
+}
+
+.statement-table th,
+.statement-table td {
+  border: 1px solid var(--color-border);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.statement-table th {
+  background: var(--color-stripe);
+  font-weight: 600;
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  user-select: none;
+  cursor: pointer;
+}
+
+.statement-table td {
+  vertical-align: top;
+}
+
+.timestamp {
+  font-size: var(--font-size-sm);
+  color: var(--color-secondary);
+  margin-top: 2px;
+}
+
+.transaction-details {
+  max-width: 300px;
+  word-break: break-word;
+  padding-right: 10px;
+  line-height: 1.4;
+}
+
+/* Amount Formatting */
+.amount-cell {
+  text-align: right;
+  font-family: monospace;
+  white-space: nowrap;
+  padding-right: var(--spacing-xl);
+}
+
+.debit {
+  color: var(--color-debit);
+}
+.credit {
+  color: var(--color-credit);
+}
+
+/* Zebra striping for rows */
+.statement-table tbody tr:nth-child(even) {
+  background-color: var(--color-stripe);
+}
+
+/* Hover effect */
+.statement-table tbody tr:hover {
+  background-color: var(--color-hover);
+}
+
+/* Column widths */
+.statement-table th:nth-child(1) {
+  width: 40px;
+} /* Sr No */
+.statement-table th:nth-child(2) {
+  width: 120px;
+} /* Transaction Date */
+.statement-table th:nth-child(3) {
+  width: 100px;
+} /* Value Date */
+.statement-table th:nth-child(4) {
+  width: auto;
+} /* Transaction Details */
+.statement-table th:nth-child(5) {
+  width: 150px;
+} /* Chq/Ref No */
+.statement-table th:nth-child(6) {
+  width: 120px;
+} /* Debit/Credit */
+.statement-table th:nth-child(7) {
+  width: 120px;
+} /* Balance */
+
+/* Right align amounts */
+.statement-table td:nth-child(6),
+.statement-table td:nth-child(7) {
+  text-align: right;
+  font-family: monospace;
+  font-size: var(--font-size-md);
+  white-space: nowrap;
+  padding-right: var(--spacing-xl);
+}
+
+/* Balance column specific styles */
+.statement-table td:nth-child(7) {
+  font-weight: 500;
+}
+
+/* Reference number column */
+.statement-table td:nth-child(5) {
+  font-family: monospace;
+  font-size: var(--font-size-md);
+  color: var(--color-secondary);
+}
+
+/* Balance changes */
+.balance.debit {
+  color: var(--color-primary);
+}
+
+/* Update styles to remove color changes in balance */
+.balance {
+  text-align: right;
+  font-family: monospace;
+  white-space: nowrap;
+  padding-right: var(--spacing-xl);
+  color: var(--color-primary);
+}
+
+/* Keep debit/credit colors only for that column */
+.statement-table td:nth-child(6).debit {
+  color: var(--color-debit);
+}
+
+.statement-table td:nth-child(6).credit {
+  color: var(--color-credit);
+}
+
+/* Remove balance color changes */
+.balance.debit {
+  color: var(--color-primary);
+}
+
+.table-container {
+  overflow-x: auto;
+  box-shadow: var(--shadow-card);
+  border-radius: var(--border-radius);
+}
+
+.filters {
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.filter-group {
+  flex: 1;
+  max-width: 300px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: var(--color-secondary);
+}
+
+.filter-group input {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.summary-card {
+  background: var(--color-background);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-card);
+}
+
+.summary-card h3 {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+}
